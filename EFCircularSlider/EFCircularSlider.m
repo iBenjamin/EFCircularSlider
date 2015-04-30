@@ -66,6 +66,7 @@ static const CGFloat kFitFrameRadius = -1.0;
     _maximumValue  = 100.0f;
     _minimumValue  = 0.0f;
     _lineWidth     = 5;
+    _unfilledLineWidth = 5;
     _unfilledColor = [UIColor blackColor];
     _filledColor   = [UIColor redColor];
     _labelFont     = [UIFont systemFontOfSize:10.0f];
@@ -86,6 +87,13 @@ static const CGFloat kFitFrameRadius = -1.0;
     [self setNeedsUpdateConstraints]; // This could affect intrinsic content size
     [self invalidateIntrinsicContentSize]; // Need to update intrinsice content size
     [self setNeedsDisplay];           // Need to redraw with new line width
+}
+
+- (void) setUnfilledLineWidth:(int)unfilledLineWidth {
+    _unfilledLineWidth = unfilledLineWidth;
+    [self setNeedsUpdateConstraints];
+    [self invalidateIntrinsicContentSize];
+    [self setNeedsDisplay];
 }
 
 -(void) setHandleType:(CircularSliderHandleType)handleType
@@ -361,7 +369,7 @@ static const CGFloat kFitFrameRadius = -1.0;
     [EFCircularTrig drawUnfilledCircleInContext:ctx
                                center:self.centerPoint
                                radius:self.radius
-                            lineWidth:self.lineWidth];
+                            lineWidth:self.unfilledLineWidth];
 
     // Draw an unfilled arc up to the currently filled point
     [self.filledColor set];
@@ -453,7 +461,7 @@ static const CGFloat kFitFrameRadius = -1.0;
     [EFCircularTrig drawUnfilledArcInContext:ctx
                                       center:self.centerPoint
                                       radius:self.radius
-                                   lineWidth:self.lineWidth
+                                   lineWidth:self.unfilledLineWidth
                           fromAngleFromNorth:degreesToHandleLeftEdge
                             toAngleFromNorth:degreesToHandleRightEdge];
     CGContextRestoreGState(ctx);

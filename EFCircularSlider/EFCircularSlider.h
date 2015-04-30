@@ -70,6 +70,10 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic) int lineWidth;
 /**
+ *  @property Width of the unfilled line to draw for slider
+ */
+@property (nonatomic) int unfilledLineWidth;
+/**
  *  @property Color of filled portion of line (from North/midnight start to currentValue)
  */
 @property (nonatomic, strong) UIColor* filledColor;

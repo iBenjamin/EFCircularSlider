@@ -21,6 +21,7 @@
     
     CGRect sliderFrame = CGRectMake(60, 150, 200, 200);
     EFCircularSlider* circularSlider = [[EFCircularSlider alloc] initWithFrame:sliderFrame];
+    circularSlider.unfilledLineWidth = 2;
     [circularSlider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:circularSlider];
     [circularSlider setCurrentValue:10.0f];
